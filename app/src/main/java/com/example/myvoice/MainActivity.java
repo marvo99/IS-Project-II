@@ -94,6 +94,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
     }
 
     @Override
+    //Allow speech capturing
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
@@ -223,15 +224,15 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
                     speak("Tap and say 'confirm' to confirm the email");
                     break;
                 case 4:
-                    speak("Please Confirm the mail\n To : " + returnedText.getText().toString() + "\nSubject : " + returnedText1.getText().toString() + "\nMessage : " + returnedText2.getText().toString() + "\nSay Yes to confirm");
+                    speak("Please Confirm the email\n To : " + returnedText.getText().toString() + "\nSubject : " + returnedText1.getText().toString() + "\nMessage : " + returnedText2.getText().toString() + "\nSay Yes to confirm");
                     break;
 
 
                 default:
                     if(result.get(0).equals("yes"))
                     {
-                        speak("Sending the mail");
-                        speak( "mail sent");
+                        speak("Sending the email");
+                        speak( "email sent");
                         sendEmail();
                     }else
                     {
