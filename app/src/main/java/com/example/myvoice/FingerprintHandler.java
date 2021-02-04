@@ -8,6 +8,7 @@ import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
 import android.os.CancellationSignal;
 import android.os.Handler;
+import android.os.StrictMode;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,31 +26,21 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
     private TextToSpeech tts;
     private String LOG_TAG = "VoiceRecognitionActivity";
 
-    public FingerprintHandler(Context context){
+    public FingerprintHandler(Context context ){
 
         this.context = context;
 
-
     }
 
-    //public void onInit(int status) {
-    //    tts.setSpeechRate(speechRate);
-    //    tts.setPitch(pitch);
-    //    tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
-    //}
+  
 
 
 
-    //public void speak(String text){
 
-       //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-           // tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
-        //}else{
-          //  tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
-        //}
-    //}
 
     public void startAuth(FingerprintManager fingerprintManager, FingerprintManager.CryptoObject cryptoObject){
+
+
 
         CancellationSignal cancellationSignal = new CancellationSignal();
         fingerprintManager.authenticate(cryptoObject, cancellationSignal, 0, this, null);
@@ -61,7 +52,7 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
 
 
         this.update("There was an Auth Error. " + errString, false);
-        //tts.speak('There was an Authentication Error');
+
 
 
 
@@ -73,7 +64,7 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
     public void onAuthenticationFailed() {
 
         this.update("Auth Failed. ", false);
-        //speak("Authentication Failed");
+
 
 
 
@@ -91,7 +82,7 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
     public void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult result) {
 
         this.update("You can now access the app.", true);
-        //speak("you can now access the application");
+
 
 
         context.startActivity(new Intent(context,MainActivity.class));
