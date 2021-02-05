@@ -19,8 +19,8 @@
 
     <ImageView
         android:id="@+id/fingerprintImage"
-        android:layout_width="151dp"
-        android:layout_height="154dp"
+        android:layout_width="159dp"
+        android:layout_height="192dp"
         android:layout_marginLeft="130dp"
         android:layout_marginTop="90dp"
         android:foreground="@drawable/fingerprint3" />
@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
         android:fontFamily="sans-serif-black"
-        android:text="Place Finger Print on the scanner"
+        android:text="Place Finger on the scanner"
         android:textAlignment="center"
         android:textColor="#fff"
         android:textSize="30dp" />
