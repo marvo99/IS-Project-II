@@ -76,13 +76,13 @@ public class Post extends AsyncTask<Void,Void,Void> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        progressDialog = ProgressDialog.show(cont,"Sending message","Please wait...",false,false);
+        progressDialog = ProgressDialog.show(cont,"Sending Email","Please wait...",false,false);
     }
 
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
         progressDialog.dismiss();
-        Toast.makeText(cont,"Message Sent", Toast.LENGTH_LONG).show();
+        Toast.makeText(cont,"Email Sent", Toast.LENGTH_LONG).show();
     }
 }
