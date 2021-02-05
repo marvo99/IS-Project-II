@@ -16,6 +16,8 @@ import android.speech.tts.TextToSpeech;
 
 import androidx.core.content.ContextCompat;
 
+import java.util.Locale;
+
 
 @TargetApi(Build.VERSION_CODES.M)
 public class FingerprintHandler extends FingerprintManager.AuthenticationCallback {
@@ -23,7 +25,7 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
 
 
     private Context context;
-    private TextToSpeech tts;
+    private TextToSpeech myTTS;
     private String LOG_TAG = "VoiceRecognitionActivity";
 
     public FingerprintHandler(Context context ){
@@ -53,6 +55,33 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
 
         this.update("There was an Auth Error. " + errString, false);
 
+        myTTS = new TextToSpeech(context.getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status != TextToSpeech.ERROR) {
+                    Locale localeToUse = new Locale("en","UK");
+                    myTTS.setLanguage(localeToUse);
+                    myTTS.speak("Authentication Error Please try again!", TextToSpeech.QUEUE_FLUSH, null);
+                }
+            }
+        });
+
+        Handler mHandler = new Handler();
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+
+
+                context.startActivity(new Intent(context,Fingerprint.class));
+
+
+
+
+            }
+
+        }, 2000L);
+
 
 
 
@@ -63,7 +92,17 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
     @Override
     public void onAuthenticationFailed() {
 
-        this.update("Auth Failed. ", false);
+        this.update("Access Denied", false);
+        myTTS = new TextToSpeech(context.getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status != TextToSpeech.ERROR) {
+                    Locale localeToUse = new Locale("en","UK");
+                    myTTS.setLanguage(localeToUse);
+                    myTTS.speak("Access Denied!", TextToSpeech.QUEUE_FLUSH, null);
+                }
+            }
+        });
 
 
 
@@ -72,20 +111,54 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
     }
 
     @Override
-    public void onAuthenticationHelp(int helpCode, CharSequence helpString) {
+    public void onAuthenticationHelp(int helpCode, final CharSequence helpString) {
 
         this.update("Error: " + helpString, false);
+        myTTS = new TextToSpeech(context.getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status != TextToSpeech.ERROR) {
+                    Locale localeToUse = new Locale("en","UK");
+                    myTTS.setLanguage(localeToUse);
+                    myTTS.speak("Error:" + helpString, TextToSpeech.QUEUE_FLUSH, null);
+                }
+            }
+        });
+
 
     }
 
     @Override
     public void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult result) {
 
-        this.update("You can now access the app.", true);
+        this.update("Fingerprint Access Granted!", true);
+
+        myTTS = new TextToSpeech(context.getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status != TextToSpeech.ERROR) {
+                    Locale localeToUse = new Locale("en","UK");
+                    myTTS.setLanguage(localeToUse);
+                    myTTS.speak("Fingerprint Access Granted!", TextToSpeech.QUEUE_FLUSH, null);
+                }
+            }
+        });
+
+        Handler mHandler = new Handler();
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
 
 
 
-        context.startActivity(new Intent(context,MainActivity.class));
+                context.startActivity(new Intent(context,MainActivity.class));
+
+
+
+
+            }
+
+        }, 2000L);
 
 
 

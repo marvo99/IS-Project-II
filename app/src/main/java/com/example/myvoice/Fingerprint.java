@@ -7,14 +7,12 @@ import android.content.pm.PackageManager;
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyPermanentlyInvalidatedException;
 import android.security.keystore.KeyProperties;
 import android.speech.tts.TextToSpeech;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,6 +27,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
+import java.util.Locale;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
@@ -39,7 +38,7 @@ public class Fingerprint extends AppCompatActivity {
 
 
 
-    private TextToSpeech tts;
+    private TextToSpeech myTTS;
     private TextView mHeadingLabel;
     private ImageView mFingerprintImage;
     private TextView mParaLabel;
@@ -57,11 +56,22 @@ public class Fingerprint extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fingerprint);
 
+        myTTS = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status != TextToSpeech.ERROR) {
+                    Locale localeToUse = new Locale("en","UK");
+                    myTTS.setLanguage(localeToUse);
+                    myTTS.speak("Please place your finger on the fingerprint scanner to proceed", TextToSpeech.QUEUE_FLUSH, null);
+                }
+            }
+        });
+
         mHeadingLabel = (TextView) findViewById(R.id.headingLabel);
         mFingerprintImage = (ImageView) findViewById(R.id.fingerprintImage);
         mParaLabel = (TextView) findViewById(R.id.paraLabel);
 
-        //Voice voice = new Voice(this);
+
 
 
 
@@ -98,7 +108,6 @@ public class Fingerprint extends AppCompatActivity {
 
                 mParaLabel.setText("Place your Finger on Scanner to Access the App.");
 
-                //voice.speak("Place Your Finger on Scanner to Access the App");
 
                 generateKey();
 
