@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
     @Override
     public void onEndOfSpeech () {
         Log.i(LOG_TAG, "onEndOfSpeech");
-        progressBar.setIndeterminate(true);//display of the spinning wheel
+        progressBar.setIndeterminate(true);
 
     }
 
