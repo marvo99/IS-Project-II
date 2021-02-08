@@ -224,7 +224,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
                     speak("Tap and say 'confirm' to confirm the email");
                     break;
                 case 4:
-                    speak("Please Confirm the email\n To : " + returnedText.getText().toString() + "\nSubject : " + returnedText1.getText().toString() + "\nMessage : " + returnedText2.getText().toString() + "\nSay send to send email");
+                    speak("Please Confirm the email\n To : " + returnedText.getText().toString() + "\nSubject : " + returnedText1.getText().toString() + "\nMessage : " + returnedText2.getText().toString() + "\nTap and Say send to send email");
                     break;
 
 
@@ -234,6 +234,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
                         speak("Sending the email");
                         speak( "email sent");
                         sendEmail();
+                        speak("Tap and say refresh to continue");
                     }else
                     {
 
