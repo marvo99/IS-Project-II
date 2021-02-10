@@ -159,7 +159,7 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
 
             }
 
-        }, 1500L);
+        }, 2000L);
 
 
 

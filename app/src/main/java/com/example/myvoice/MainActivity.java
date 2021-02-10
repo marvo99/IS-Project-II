@@ -235,6 +235,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
                         speak( "email sent");
                         sendEmail();
                     }else
+
                     {
 
                         speak("Refreshing to compose a new email");

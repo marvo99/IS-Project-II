@@ -78,18 +78,6 @@ public class Fingerprint extends AppCompatActivity {
 
                 mParaLabel.setText("Fingerprint Scanner not detected in Device");
 
-                myTTS = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
-                    @Override
-                    public void onInit(int status) {
-                        if (status != TextToSpeech.ERROR) {
-                            Locale localeToUse = new Locale("en","UK");
-                            myTTS.setLanguage(localeToUse);
-                            myTTS.speak("Fingerprint Scanner not detected in Device", TextToSpeech.QUEUE_FLUSH, null);
-                        }
-                    }
-                });
-
-
 
 
 
@@ -97,16 +85,6 @@ public class Fingerprint extends AppCompatActivity {
 
                 mParaLabel.setText("Permission not granted to use Fingerprint Scanner");
 
-                myTTS = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
-                    @Override
-                    public void onInit(int status) {
-                        if (status != TextToSpeech.ERROR) {
-                            Locale localeToUse = new Locale("en","UK");
-                            myTTS.setLanguage(localeToUse);
-                            myTTS.speak("Permission not granted to use Fingerprint Scanner", TextToSpeech.QUEUE_FLUSH, null);
-                        }
-                    }
-                });
 
 
 
@@ -114,31 +92,11 @@ public class Fingerprint extends AppCompatActivity {
 
                 mParaLabel.setText("Add Lock to your Phone in Settings");
 
-                myTTS = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
-                    @Override
-                    public void onInit(int status) {
-                        if (status != TextToSpeech.ERROR) {
-                            Locale localeToUse = new Locale("en","UK");
-                            myTTS.setLanguage(localeToUse);
-                            myTTS.speak("Add Lock to your Phone in Settings", TextToSpeech.QUEUE_FLUSH, null);
-                        }
-                    }
-                });
 
             } else if (!fingerprintManager.hasEnrolledFingerprints()){
 
                 mParaLabel.setText("You should at least have 1 Fingerprint enrolled");
 
-                myTTS = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
-                    @Override
-                    public void onInit(int status) {
-                        if (status != TextToSpeech.ERROR) {
-                            Locale localeToUse = new Locale("en","UK");
-                            myTTS.setLanguage(localeToUse);
-                            myTTS.speak("You should at least have 1 Fingerprint enrolled. ", TextToSpeech.QUEUE_FLUSH, null);
-                        }
-                    }
-                });
 
             } else {
 
@@ -150,7 +108,7 @@ public class Fingerprint extends AppCompatActivity {
                         if (status != TextToSpeech.ERROR) {
                             Locale localeToUse = new Locale("en","UK");
                             myTTS.setLanguage(localeToUse);
-                            myTTS.speak("Please place your finger on the fingerprint scanner to proceed", TextToSpeech.QUEUE_FLUSH, null);
+                            myTTS.speak("Please place your finger on the fingerprint scanner to proceed.", TextToSpeech.QUEUE_FLUSH, null);
                         }
                     }
                 });
