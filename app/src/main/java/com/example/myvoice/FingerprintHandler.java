@@ -49,6 +49,7 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
 
     }
 
+
     @Override
     public void onAuthenticationError(int errorCode, CharSequence errString) {
 
@@ -158,7 +159,7 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
 
             }
 
-        }, 2000L);
+        }, 1500L);
 
 
 
